@@ -10,10 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Docker Setup QEMU
-        uses: docker/setup-qemu-action@v3
-        with:
-          image: loongcr.lcpu.dev/multiarch/archlinux
+      - name: Setup QEMU
+        run: docker run --rm --privileged loongcr.lcpu.dev/multiarch/archlinux --reset -p yes
       - name: Build Image
         uses: docker/build-push-action@v5
         with:
