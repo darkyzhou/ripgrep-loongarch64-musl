@@ -1,0 +1,34 @@
+diff --git a/Cargo.lock b/Cargo.lock
+index 5ca69a0..9d4d7d9 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -287,8 +287,7 @@ dependencies = [
+ [[package]]
+ name = "pcre2"
+ version = "0.2.9"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "3be55c43ac18044541d58d897e8f4c55157218428953ebd39d86df3ba0286b2b"
++source = "git+https://github.com/darkyzhou/rust-pcre2.git#6eb28f246c47078bdf058d5b6cd8af9c117dc46e"
+ dependencies = [
+  "libc",
+  "log",
+@@ -298,8 +297,7 @@ dependencies = [
+ [[package]]
+ name = "pcre2-sys"
+ version = "0.2.9"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "550f5d18fb1b90c20b87e161852c10cde77858c3900c5059b5ad2a1449f11d8a"
++source = "git+https://github.com/darkyzhou/rust-pcre2.git#6eb28f246c47078bdf058d5b6cd8af9c117dc46e"
+ dependencies = [
+  "cc",
+  "libc",
+diff --git a/crates/pcre2/Cargo.toml b/crates/pcre2/Cargo.toml
+index a5f6852..68a6f92 100644
+--- a/crates/pcre2/Cargo.toml
++++ b/crates/pcre2/Cargo.toml
+@@ -16,4 +16,4 @@ edition = "2018"
+ [dependencies]
+ grep-matcher = { version = "0.1.7", path = "../matcher" }
+ log = "0.4.20"
+-pcre2 = "0.2.6"
++pcre2 = { git = "https://github.com/darkyzhou/rust-pcre2.git" }

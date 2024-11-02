@@ -1,0 +1,36 @@
+name: Build
+
+on:
+  push:
+    tags:        
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Docker Setup QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          image: loongcr.lcpu.dev/multiarch/archlinux
+      - name: Build Image
+        uses: docker/build-push-action@v5
+        with:
+          tags: ripgrep:latest
+          load: true
+      - name: Extract binary
+        uses: shrink/actions-docker-extract@v3
+        id: extract
+        with:
+          image: ripgrep:latest
+          path: /build/target/loongarch64-unknown-linux-musl/release/rg
+          destination: dist
+      - name: Upload binary
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: dist/rg
+          asset_name: rg
+          tag: ${{ github.ref }}
+          overwrite: true
