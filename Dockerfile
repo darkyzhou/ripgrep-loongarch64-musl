@@ -23,7 +23,7 @@ ENV PATH=/root/.cargo/bin:$PREFIX/bin:$PATH \
     RUSTUP_HOME=/root/.rustup \
     CARGO_BUILD_TARGET=loongarch64-unknown-linux-musl \
     # build statically linked binary with musl
-    RUSTFLAGS="-C target-feature=+crt-static -C default-linker-libraries=yes -C link-self-contained=yes" \
+    RUSTFLAGS="-C target-feature=+crt-static -C default-linker-libraries=yes -C link-self-contained=yes -C debuginfo=none -C strip=symbols" \
     # ripgrep uses jemalloc when building with musl, and LoongArch64 uses 16K page size by default
     JEMALLOC_SYS_WITH_LG_PAGE=16
 
